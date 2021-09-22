@@ -5,9 +5,22 @@ import Card from "./app/components/Card/Card";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
+import "react-native-gesture-handler";
+import MessagesScreen from "./app/screens/MessagesScreen";
+import Screen from "./app/components/Screen";
+import Icon from "./app/components/Icon/Icon";
+import ListItem from "./app/components/ListItem";
 
 export default function App() {
-  return <ViewImageScreen />;
+  return (
+    <Screen>
+      <ListItem
+        title="My title"
+        // subTitle="My subtitle"
+        ImageComponent={<Icon name="email" />}
+      />
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({
