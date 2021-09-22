@@ -8,7 +8,7 @@ interface IScreen {
 }
 
 const Screen = ({ children, style }: IScreen) => {
-  return <SafeAreaView style={styles.screen}>{children}</SafeAreaView>;
+  return <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>;
 };
 
 export default Screen;

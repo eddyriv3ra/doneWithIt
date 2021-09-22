@@ -16,7 +16,7 @@ interface IListItem extends TouchableHighlightProps {
   subTitle?: string;
   image?: ImageProps;
   renderRightActions?: () => ReactNode;
-  ImageComponent?: ReactElement;
+  IconComponent?: ReactElement;
 }
 
 const ListItem = ({
@@ -25,13 +25,13 @@ const ListItem = ({
   image,
   onPress,
   renderRightActions,
-  ImageComponent,
+  IconComponent,
 }: IListItem) => {
   return (
     <Swipeable renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
         <View style={styles.container}>
-          {ImageComponent}
+          {IconComponent}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
             <Text style={[styles.title]}>{title}</Text>
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     padding: 15,
+    backgroundColor: colors.white,
   },
   image: {
     width: 70,
