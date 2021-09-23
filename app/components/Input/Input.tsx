@@ -5,11 +5,11 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defaultStyles from "../../config/styles";
 
 interface IAppTextInout extends TextInputProps {
-  icon: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
-  placeholder: string;
+  icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+  placeholder?: string;
 }
 
-const AppTextInput = ({ icon, ...otherProps }: IAppTextInout) => {
+const AppTextInput = ({ icon, onBlur, ...otherProps }: IAppTextInout) => {
   return (
     <View style={styles.container}>
       {icon && (

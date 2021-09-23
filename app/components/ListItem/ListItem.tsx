@@ -1,4 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   View,
   StyleSheet,
@@ -37,6 +38,11 @@ const ListItem = ({
             <Text style={[styles.title]}>{title}</Text>
             {subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
           </View>
+          <MaterialCommunityIcons
+            color={colors.medium}
+            name="chevron-right"
+            size={25}
+          />
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -45,6 +51,7 @@ const ListItem = ({
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     flexDirection: "row",
     padding: 15,
     backgroundColor: colors.white,
@@ -58,6 +65,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     marginLeft: 10,
     justifyContent: "center",
+    flex: 1,
   },
   subTitle: {
     color: colors.medium,

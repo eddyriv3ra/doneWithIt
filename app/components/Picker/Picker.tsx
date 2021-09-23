@@ -15,7 +15,7 @@ import defaultStyles from "../../config/styles";
 import PickerItem from "../PickerItem";
 
 interface AppPicker {
-  icon: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+  icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
   placeholder: string;
   items: any;
   onSelectItem: (item: any) => void;
@@ -43,9 +43,11 @@ const AppPicker = ({
               style={styles.icon}
             />
           )}
-          <Text style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </Text>
+          {selectedItem ? (
+            <Text style={styles.text}>{selectedItem.label}</Text>
+          ) : (
+            <Text style={styles.placeholder}>{placeholder}</Text>
+          )}
           <MaterialCommunityIcons
             name="chevron-down"
             size={20}
@@ -83,6 +85,10 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 15,
     marginVertical: 10,
+  },
+  placeholder: {
+    color: defaultStyles.colors.medium,
+    flex: 1,
   },
   icon: {
     marginRight: 10,

@@ -14,6 +14,8 @@ import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import Input from "./app/components/Input";
 import Picker from "./app/components/Picker";
+import LoginScreen from "./app/screens/LoginScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 const categories = [
   { label: "Furniture", value: 1 },
@@ -22,19 +24,7 @@ const categories = [
 ];
 
 export default function App() {
-  const [category, setCategory] = useState(null);
-  return (
-    <Screen>
-      <Picker
-        selectedItem={category}
-        onSelectItem={(item) => setCategory(item)}
-        items={categories}
-        placeholder="Category"
-        icon="apps"
-      />
-      <Input icon="email" placeholder="Email" />
-    </Screen>
-  );
+  return <ListingEditScreen />;
 }
 
 const styles = StyleSheet.create({

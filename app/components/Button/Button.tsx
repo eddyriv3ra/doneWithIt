@@ -10,6 +10,7 @@ import colors from "../../config/colors";
 interface IButton extends TouchableOpacityProps {
   color: "primary" | "secondary";
   children: ReactNode;
+  onPress: any;
 }
 
 const Button = ({ color, children, onPress }: IButton) => {
