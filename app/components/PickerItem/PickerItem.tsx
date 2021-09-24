@@ -2,14 +2,14 @@ import React from "react";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
 interface IPickerItem {
-  label: string;
+  item: any;
   onPress: () => void;
 }
 
-const PickerItem = ({ label, onPress }: IPickerItem) => {
+const PickerItem = ({ item, onPress }: IPickerItem) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text style={styles.text}>{label}</Text>
+      <Text style={styles.text}>{item.label}</Text>
     </TouchableOpacity>
   );
 };

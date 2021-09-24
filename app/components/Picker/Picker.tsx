@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -20,13 +20,19 @@ interface AppPicker {
   items: any;
   onSelectItem: (item: any) => void;
   selectedItem: any;
+  width?: number | string;
+  PickerItemComponent?: any;
+  numberOfColumns: number;
 }
 
 const AppPicker = ({
   icon,
   items,
+  width,
   onSelectItem,
+  PickerItemComponent = PickerItem,
   placeholder,
+  numberOfColumns,
   selectedItem,
 }: AppPicker) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,7 +40,7 @@ const AppPicker = ({
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width: width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -60,9 +66,11 @@ const AppPicker = ({
           <Button title="Close" onPress={() => setModalVisible(false)} />
           <FlatList
             data={items}
+            numColumns={numberOfColumns}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);
@@ -82,7 +90,6 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    width: "100%",
     padding: 15,
     marginVertical: 10,
   },

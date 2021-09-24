@@ -9,6 +9,7 @@ import { TextInputProps } from "react-native";
 interface AppFormField extends TextInputProps {
   name: string;
   icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+  width?: number;
 }
 
 interface FormikTypes {
@@ -18,13 +19,14 @@ interface FormikTypes {
   touched: any;
 }
 
-const AppFormField = ({ name, ...otherProps }: AppFormField) => {
+const AppFormField = ({ name, width, ...otherProps }: AppFormField) => {
   const { setFieldTouched, handleChange, errors, touched }: FormikTypes =
     useFormikContext();
 
   return (
     <>
       <Input
+        width={width}
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
         {...otherProps}

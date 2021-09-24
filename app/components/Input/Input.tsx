@@ -7,11 +7,17 @@ import defaultStyles from "../../config/styles";
 interface IAppTextInout extends TextInputProps {
   icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
   placeholder?: string;
+  width?: number;
 }
 
-const AppTextInput = ({ icon, onBlur, ...otherProps }: IAppTextInout) => {
+const AppTextInput = ({
+  icon,
+  width,
+  onBlur,
+  ...otherProps
+}: IAppTextInout) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: width }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
