@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import Card from "./app/components/Card/Card";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -16,6 +17,9 @@ import Input from "./app/components/Input";
 import Picker from "./app/components/Picker";
 import LoginScreen from "./app/screens/LoginScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import * as Permissions from "expo-permissions";
+import Button from "./app/components/Button";
+import ImageInput from "./app/components/ImageInput";
 
 const categories = [
   { label: "Furniture", value: 1 },
@@ -24,7 +28,16 @@ const categories = [
 ];
 
 export default function App() {
-  return <ListingEditScreen />;
+  const [imageUri, setImageUri] = useState<undefined | string>(undefined);
+
+  return (
+    <Screen>
+      <ImageInput
+        imageUri={imageUri}
+        onChangeImage={(uri) => setImageUri(uri)}
+      />
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({
