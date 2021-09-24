@@ -6,7 +6,7 @@ import colors from "../../config/colors";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 interface IImageInput {
-  imageUri?: string;
+  imageUri?: string | undefined;
   onChangeImage: (value: string | undefined) => void;
 }
 

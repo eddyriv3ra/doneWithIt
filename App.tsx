@@ -20,24 +20,10 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import * as Permissions from "expo-permissions";
 import Button from "./app/components/Button";
 import ImageInput from "./app/components/ImageInput";
-
-const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
-];
+import ImageInputList from "./app/components/ImageInputList";
 
 export default function App() {
-  const [imageUri, setImageUri] = useState<undefined | string>(undefined);
-
-  return (
-    <Screen>
-      <ImageInput
-        imageUri={imageUri}
-        onChangeImage={(uri) => setImageUri(uri)}
-      />
-    </Screen>
-  );
+  return <ListingEditScreen />;
 }
 
 const styles = StyleSheet.create({
