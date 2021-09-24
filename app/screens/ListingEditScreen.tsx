@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import * as Yup from "yup";
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import FormImagePicker from "../components/FormImagePicker/FormImagePicker";
-
+import useLocation from "../hooks/useLocation";
 import {
   AppForm as Form,
   AppFormField as FormField,
@@ -77,7 +77,9 @@ const categories = [
   },
 ];
 
-function ListingEditScreen() {
+const ListingEditScreen = () => {
+  const location = useLocation();
+
   return (
     <Screen style={styles.container}>
       <Form
@@ -88,7 +90,7 @@ function ListingEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => console.log(location)}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
@@ -119,7 +121,7 @@ function ListingEditScreen() {
       </Form>
     </Screen>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
