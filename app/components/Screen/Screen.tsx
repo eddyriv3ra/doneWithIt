@@ -8,7 +8,11 @@ interface IScreen {
 }
 
 const Screen = ({ children, style }: IScreen) => {
-  return <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>;
+  return (
+    <SafeAreaView edges={["top"]} style={[styles.screen, style]}>
+      {children}
+    </SafeAreaView>
+  );
 };
 
 export default Screen;
@@ -16,5 +20,6 @@ export default Screen;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: "red",
   },
 });

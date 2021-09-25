@@ -1,20 +1,20 @@
 import React from "react";
-import { View, StyleSheet, Image, Text, ImageProps } from "react-native";
+import { View, StyleSheet, Image, Text } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import colors from "../../config/colors";
 
 interface ICard {
   title: string;
   subTitle: string;
-  image: ImageProps;
+  imageUrl: string;
   onPress: () => void;
 }
 
-const Card = ({ title, subTitle, image, onPress }: ICard) => {
+const Card = ({ title, subTitle, imageUrl, onPress }: ICard) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image style={styles.image} source={image} />
+        <Image style={styles.image} source={{ uri: imageUrl }} />
         <View style={styles.detailsContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>{subTitle}</Text>

@@ -1,27 +1,16 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import Screen from "../components/Screen";
+import listingsApi from "../api/listings";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import { FeedStackParamList } from "../navigation/FeedNavigator";
-
-const listings = [
-  {
-    id: 1,
-    title: "Red jacket for sale",
-    price: 100,
-    image: require("../assets/jacket.jpg"),
-  },
-  {
-    id: 2,
-    title: "Couch in great condition",
-    price: 1000,
-    image: require("../assets/couch.jpg"),
-  },
-];
+import Button from "../components/Button";
+import ActivityIndicator from "../components/ActivityIndicator";
+import useApi from "../hooks/useApi";
 
 type ListingScreenPropNavigation = NativeStackNavigationProp<
   FeedStackParamList,
@@ -29,18 +18,29 @@ type ListingScreenPropNavigation = NativeStackNavigationProp<
 >;
 
 const ListingsScreen = () => {
+  const { error, data, loading, request } = useApi(listingsApi.getListings);
   const navigation = useNavigation<ListingScreenPropNavigation>();
 
   return (
     <Screen style={styles.screen}>
+      {error && (
+        <>
+          <Text>Couldn't retrieve the listings</Text>
+          <Button color="primary" onPress={() => request()}>
+            Retry
+          </Button>
+        </>
+      )}
+      <ActivityIndicator visible={loading} />
       <FlatList
-        data={listings}
+        data={data}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <Card
             title={item.title}
             subTitle={"$" + item.price}
-            image={item.image}
+            imageUrl={item.images[0].url}
             onPress={() => navigation.navigate("ListingDetails", { item })}
           />
         )}
@@ -51,7 +51,7 @@ const ListingsScreen = () => {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 20,
+    paddingHorizontal: 20,
     backgroundColor: colors.light,
   },
 });
