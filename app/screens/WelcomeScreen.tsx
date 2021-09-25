@@ -1,9 +1,18 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ImageBackground, StyleSheet, Image } from "react-native";
 import Button from "../components/Button";
+import { WelcomeStackParamList } from "../navigation/AuthNavigator";
+
+type WelcomeScreenPropNavigation = NativeStackNavigationProp<
+  WelcomeStackParamList,
+  "Welcome"
+>;
 
 const WelcomeScreen = () => {
+  const navigation = useNavigation<WelcomeScreenPropNavigation>();
   return (
     <ImageBackground
       blurRadius={8}
@@ -15,11 +24,14 @@ const WelcomeScreen = () => {
         <Text style={styles.tagLine}>Sell What You Don't Need</Text>
       </View>
       <SafeAreaView style={styles.buttonsContainer} edges={["bottom"]}>
-        <Button color="primary" onPress={() => console.log("lala")}>
+        <Button color="primary" onPress={() => navigation.navigate("Login")}>
           LOGIN
         </Button>
         <View style={{ marginTop: 20 }} />
-        <Button color="secondary" onPress={() => console.log("lala")}>
+        <Button
+          color="secondary"
+          onPress={() => navigation.navigate("Register")}
+        >
           REGISTER
         </Button>
       </SafeAreaView>

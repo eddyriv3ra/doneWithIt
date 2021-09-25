@@ -21,9 +21,65 @@ import * as Permissions from "expo-permissions";
 import Button from "./app/components/Button";
 import ImageInput from "./app/components/ImageInput";
 import ImageInputList from "./app/components/ImageInputList";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const Tweets = ({ navigation }: any) => {
+  return (
+    <Screen>
+      <Text>Tweets</Text>
+      <Button
+        onPress={() => navigation.navigate("TweetDetails")}
+        color="primary"
+      >
+        View Tweet
+      </Button>
+    </Screen>
+  );
+};
+
+const TweetDetails = () => {
+  return (
+    <Screen>
+      <Text>TweetDetails</Text>
+    </Screen>
+  );
+};
+
+const Account = () => {
+  return (
+    <Screen>
+      <Text>Account</Text>
+    </Screen>
+  );
+};
+
+const StackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+  </Stack.Navigator>
+);
+
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Feed" component={StackNavigator} />
+    <Tab.Screen name="Account" component={Account} />
+  </Tab.Navigator>
+);
 
 export default function App() {
-  return <ListingEditScreen />;
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
