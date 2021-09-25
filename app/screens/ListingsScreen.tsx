@@ -1,9 +1,12 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
+import { FeedStackParamList } from "../navigation/FeedNavigator";
 
 const listings = [
   {
@@ -20,7 +23,14 @@ const listings = [
   },
 ];
 
+type ListingScreenPropNavigation = NativeStackNavigationProp<
+  FeedStackParamList,
+  "ListingDetails"
+>;
+
 const ListingsScreen = () => {
+  const navigation = useNavigation<ListingScreenPropNavigation>();
+
   return (
     <Screen style={styles.screen}>
       <FlatList
@@ -31,6 +41,7 @@ const ListingsScreen = () => {
             title={item.title}
             subTitle={"$" + item.price}
             image={item.image}
+            onPress={() => navigation.navigate("ListingDetails", { item })}
           />
         )}
       />

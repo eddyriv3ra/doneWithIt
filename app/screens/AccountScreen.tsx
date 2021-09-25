@@ -1,11 +1,14 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
 import ListItemSeparatorComponent from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
+import { AccountStackParamList } from "../navigation/AccountNavigator";
 
 const menuItems: any = [
   {
@@ -21,10 +24,18 @@ const menuItems: any = [
       name: "email",
       backgroundColor: colors.secondary,
     },
+    targetScreen: "Messages",
   },
 ];
 
-function AccountScreen() {
+type AccountScreenPropNavigation = NativeStackNavigationProp<
+  AccountStackParamList,
+  "Account"
+>;
+
+const AccountScreen = () => {
+  const navigation = useNavigation<AccountScreenPropNavigation>();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -48,6 +59,7 @@ function AccountScreen() {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
         />
@@ -58,7 +70,7 @@ function AccountScreen() {
       />
     </Screen>
   );
-}
+};
 
 const styles = StyleSheet.create({
   screen: {

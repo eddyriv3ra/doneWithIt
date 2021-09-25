@@ -1,16 +1,23 @@
 import React from "react";
+import { RouteProp, useRoute } from "@react-navigation/core";
 import { View, Image, StyleSheet, Text } from "react-native";
 
 import ListItem from "../components/ListItem";
 import colors from "../config/colors";
+import { FeedStackParamList } from "../navigation/FeedNavigator";
+
+type Props = RouteProp<FeedStackParamList, "ListingDetails">;
 
 const ListingDetailsScreen = () => {
+  const {
+    params: { item },
+  } = useRoute<Props>();
   return (
     <View>
-      <Image style={styles.image} source={require("../assets/jacket.jpg")} />
+      <Image style={styles.image} source={item.image} />
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>Red jacket for sale</Text>
-        <Text style={styles.price}>$100</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.price}>${item.price}</Text>
         <View style={styles.userContainer}>
           <ListItem
             image={require("../assets/mosh.jpg")}
