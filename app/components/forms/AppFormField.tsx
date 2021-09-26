@@ -12,15 +12,8 @@ interface AppFormField extends TextInputProps {
   width?: number;
 }
 
-interface FormikTypes {
-  setFieldTouched: (value: string) => void;
-  handleChange: any;
-  errors: any;
-  touched: any;
-}
-
 const AppFormField = ({ name, width, ...otherProps }: AppFormField) => {
-  const { setFieldTouched, handleChange, errors, touched }: FormikTypes =
+  const { setFieldTouched, setFieldValue, errors, touched, values }: any =
     useFormikContext();
 
   return (
@@ -28,7 +21,8 @@ const AppFormField = ({ name, width, ...otherProps }: AppFormField) => {
       <Input
         width={width}
         onBlur={() => setFieldTouched(name)}
-        onChangeText={handleChange(name)}
+        onChangeText={(text) => setFieldValue(name, text)}
+        value={values[name]}
         {...otherProps}
       />
       <ErrorMessage error={errors[name]} visible={touched[name]} />
