@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormikContext, FormikErrors } from "formik";
+import { useFormikContext } from "formik";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Input from "../Input";
