@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -9,6 +9,7 @@ import ListItemSeparatorComponent from "../components/ListItemSeparator";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
 import { AccountStackParamList } from "../navigation/AccountNavigator";
+import { AuthContext } from "../auth/context";
 
 const menuItems: any = [
   {
@@ -35,13 +36,14 @@ type AccountScreenPropNavigation = NativeStackNavigationProp<
 
 const AccountScreen = () => {
   const navigation = useNavigation<AccountScreenPropNavigation>();
+  const { user, setUser } = useContext(AuthContext);
 
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Mosh Hamedani"
-          subTitle="programmingwithmosh@gmail.com"
+          title={user.name}
+          subTitle={user.email}
           image={require("../assets/mosh.jpg")}
         />
       </View>
@@ -66,6 +68,7 @@ const AccountScreen = () => {
       </View>
       <ListItem
         title="Log Out"
+        onPress={() => setUser(null)}
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
     </Screen>
