@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { Image } from "react-native-expo-image-cache";
 import colors from "../../config/colors";
 
 interface ICard {
@@ -8,13 +9,19 @@ interface ICard {
   subTitle: string;
   imageUrl: string;
   onPress: () => void;
+  thumbnailUrl: string;
 }
 
-const Card = ({ title, subTitle, imageUrl, onPress }: ICard) => {
+const Card = ({ title, subTitle, imageUrl, onPress, thumbnailUrl }: ICard) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
-        <Image style={styles.image} source={{ uri: imageUrl }} />
+        <Image
+          tint="light"
+          style={styles.image}
+          preview={{ uri: thumbnailUrl }}
+          uri={imageUrl}
+        />
         <View style={styles.detailsContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>{subTitle}</Text>

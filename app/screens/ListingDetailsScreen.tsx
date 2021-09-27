@@ -1,6 +1,7 @@
 import React from "react";
 import { RouteProp, useRoute } from "@react-navigation/core";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 
 import ListItem from "../components/ListItem";
 import colors from "../config/colors";
@@ -14,7 +15,12 @@ const ListingDetailsScreen = () => {
   } = useRoute<Props>();
   return (
     <View>
-      <Image style={styles.image} source={{ uri: item.images[0].url }} />
+      <Image
+        tint="light"
+        style={styles.image}
+        preview={{ uri: item.images[0].thumbnailUrl }}
+        uri={item.images[0].url}
+      />
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.price}>${item.price}</Text>
