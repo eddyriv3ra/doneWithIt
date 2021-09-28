@@ -13,13 +13,13 @@ Go to file `client.js` and `development.json` and enter your IP address
 Download repo:
 
 ```
-git clone https://github.com/eddyriv3ra/mealsToGo.git
+git clone https://github.com/eddyriv3ra/doneWithIt.git
 ```
 
 Change to directory:
 
 ```
-cd mealsToGo
+cd doneWithIt
 ```
 
 Install dependencies:
