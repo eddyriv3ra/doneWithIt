@@ -26,11 +26,13 @@ Install dependencies:
 
 ```
 yarn install
+cd backend and run npm install
 ```
 
 Run App:
 
 ```
+cd backend and execute npm run start
 To run the app you will need IOS and Android simulator
 
 yarn run ios
